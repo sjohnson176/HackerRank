@@ -7,6 +7,12 @@ public class LineQueQuestion {
 				1, 2, 5, 3, 4, 7, 8, 6};
 		minimumBribes(q);
 		
+//		2
+//		8
+//		5 1 2 3 7 8 6 4
+//		8
+//		1 2 5 3 7 8 6 4
+		
 //		1
 //		8
 //		1 2 5 3 4 7 8 6
@@ -17,12 +23,13 @@ public class LineQueQuestion {
 //		5
 //		2 5 1 3 4
 	}
-	 static void minimumBribes(int[] q) {
-		 int minBribes = 0;
+	
+	 static void minimumBribes(int[] q) { 
 		 int i = 0;
 		 int instart = 0;
 		 int instips = 0;
 		 while (i < q[0]) {
+			 int minBribes = 0;
 			 boolean tooChaotic = false;
 			 if (i == 0) {
 				 instart = 2;
@@ -38,8 +45,13 @@ public class LineQueQuestion {
 				 if (q[instart] == b) {
 					 continue;
 				 }
-				 else if (q[instart] > b){
+				 else if (q[instart] > b) {
 					 currentBribes = q[instart] - b;
+				 }
+				 else if (instart < q.length - 1) {
+					 if (q[instart] < b && q[instart] > q[instart+1]) {
+						 minBribes++;
+					 }
 				 }
 			 
 				 if (currentBribes > 2) {
